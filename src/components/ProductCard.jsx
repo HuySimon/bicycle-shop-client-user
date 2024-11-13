@@ -1,35 +1,44 @@
-const ProductCard = () => {
+import { Link } from 'react-router-dom';
+
+const ProductCard = ({ product, price }) => {
+    const { id, name } = product;
     return (
         <>
-            <div className="relative flex w-72 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-                <div className="relative mx-4 mt-4 h-96 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
+            <div className="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+                <Link to={`/Product/${id}`} title={name}>
                     <img
-                        src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=927&amp;q=80"
-                        className="h-full w-full object-cover"
+                        src="https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                        alt="Product"
+                        className="h-80 w-72 object-cover rounded-t-xl"
                     />
-                </div>
-                <div className="p-6">
-                    <div className="mb-2 flex items-center justify-between">
-                        <p className="block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
-                            Apple AirPods
-                        </p>
-                        <p className="block font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
-                            $95.00
-                        </p>
+                </Link>
+                <div className="px-4 py-3 w-72">
+                    {/* <span className="text-gray-400 mr-3 uppercase text-xs">Brand</span> */}
+                    <p className="text-lg font-bold text-black truncate block capitalize">{name}</p>
+                    <div className="flex items-center">
+                        <p className="text-lg font-semibold text-black cursor-auto my-3">{price}</p>
+                        {/* <del>
+                                <p className="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+                            </del> */}
+                        <button className="ml-auto select-none rounded-lg bg-blue-gray-900/10 align-middle text-blue-gray-900 transition-all hover:scale-110 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85]">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                fill="currentColor"
+                                className="bi bi-bag-plus"
+                                viewBox="0 0 16 16"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
+                                />
+                                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                            </svg>
+                        </button>
                     </div>
-                    <p className="block font-sans text-sm font-normal leading-normal text-gray-700 antialiased opacity-75">
-                        With plenty of talk and listen time, voice-activated Siri access, and an available wireless
-                        charging case.
-                    </p>
                 </div>
-                <div className="p-6 pt-0">
-                    <button
-                        className="block w-full select-none rounded-lg bg-blue-gray-900/10 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                        type="button"
-                    >
-                        Add to Cart
-                    </button>
-                </div>
+                {/* </a> */}
             </div>
         </>
     );

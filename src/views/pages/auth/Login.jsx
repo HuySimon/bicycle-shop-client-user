@@ -1,6 +1,25 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import Input from '@/components/ui/input';
+
+import { useLogin } from '@/features/authentication/useLogin';
 
 const Login = () => {
+    useEffect(() => {
+        document.title = 'Đăng nhập';
+    }, []);
+    const { register, handleSubmit, formState } = useForm({
+        defaultValues: {},
+    });
+    const { login, isLoading } = useLogin();
+
+    const { errors } = formState;
+
+    function onSubmit(data) {
+        const { username, password } = data;
+        login({ username, password });
+    }
     return (
         <>
             <div className="h-screen flex">
@@ -30,11 +49,13 @@ const Login = () => {
                 </div>
                 <div className="flex w-full lg:w-1/2 justify-center items-center bg-white space-y-8">
                     <div className="w-full px-8 md:px-32 lg:px-24">
-                        <form className="bg-white rounded-md shadow-2xl p-5">
-                            <h1 className="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
-                            <p className="text-sm font-normal text-gray-600 mb-8">Welcome Back</p>
+                        <form onSubmit={handleSubmit(onSubmit)} className="bg-white rounded-md shadow-2xl p-5">
+                            <h1 className="text-gray-800 font-bold text-2xl mb-1 text-center">Đăng Nhập</h1>
+                            <p className="text-sm font-normal text-gray-600 mb-8 text-center">
+                                Welcome Back To Our Bike Shop
+                            </p>
                             <div className="flex items-center border-2 mb-8 py-2 px-3 rounded-2xl">
-                                <svg
+                                {/* <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="h-5 w-5 text-gray-400"
                                     fill="none"
@@ -47,13 +68,22 @@ const Login = () => {
                                         strokeWidth="2"
                                         d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
                                     />
-                                </svg>
-                                <input
+                                </svg> */}
+                                {/* <input
                                     id="email"
                                     className=" pl-2 w-full outline-none border-none"
                                     type="email"
                                     name="email"
                                     placeholder="Email"
+                                /> */}
+                                <Input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    placeholder="Email"
+                                    {...register('email', {
+                                        required: 'Email không được để trống',
+                                    })}
                                 />
                             </div>
                             <div className="flex items-center border-2 mb-12 py-2 px-3 rounded-2xl ">
@@ -69,12 +99,21 @@ const Login = () => {
                                         clipRule="evenodd"
                                     />
                                 </svg>
-                                <input
+                                {/* <input
                                     className="pl-2 w-full outline-none border-none"
                                     type="password"
                                     name="password"
                                     id="password"
                                     placeholder="Mật khẩu"
+                                /> */}
+                                <Input
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    placeholder="Mật khẩu"
+                                    {...register('password', {
+                                        required: 'Mật khẩu không được để trống',
+                                    })}
                                 />
                             </div>
                             <button

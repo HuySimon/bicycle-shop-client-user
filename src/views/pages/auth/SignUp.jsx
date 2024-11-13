@@ -1,6 +1,10 @@
 import { Button } from '@/components/ui/button';
+import { useEffect } from 'react';
 
 const SignUp = () => {
+    useEffect(() => {
+        document.title = 'Đăng ký';
+    }, []);
     return (
         <>
             <div className="h-screen flex">

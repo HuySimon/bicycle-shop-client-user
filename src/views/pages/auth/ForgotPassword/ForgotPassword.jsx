@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const ForgotPassword = () => {
+    useEffect(() => {
+        document.title = 'Quên mật khẩu';
+    }, []);
     return (
         <main id="content" role="main" className="w-full  max-w-md mx-auto p-6">
             <div className="mt-7 bg-white  rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 border-2 border-indigo-300">

@@ -1,4 +1,10 @@
+import ProductDetail from '@/components/ProductDetail';
+
 const HomeUser = () => {
-    return (<>HomeUser</>);
-}
-export default HomeUser
+    return (
+        <>
+            <ProductDetail />
+        </>
+    );
+};
+export default HomeUser;
