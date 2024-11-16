@@ -41,7 +41,7 @@ const router = createBrowserRouter([
     },
     { path: '/ForgotPassword', element: <ForgotPassword /> },
     { path: '/OTP', element: <OTP /> },
-    { path: '/ChangPassword', element: <ChangePassword /> },
+    { path: '/ChangePassword', element: <ChangePassword /> },
 ]);
 
 export default router;

@@ -1,10 +1,12 @@
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
 import { useUser } from '@/features/authentication/useUser';
+import { useLogout } from '@/features/authentication/useLogout';
 
 const SheetUserInfo = () => {
     const { user } = useUser();
     const { userID, name, userEmail, address } = user;
+    const { logout, isLoading } = useLogout();
 
     return (
         <Sheet>
@@ -25,7 +27,7 @@ const SheetUserInfo = () => {
 
                         <img
                             className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
-                            src="src/assets/avartar.jpg"
+                            src="src/assets/avartar2.jpg"
                             alt="Bordered avatar"
                         />
                     </div>
@@ -34,16 +36,16 @@ const SheetUserInfo = () => {
             </SheetTrigger>
             <SheetContent>
                 <SheetHeader>
-                    <SheetTitle>Profile</SheetTitle>
+                    <SheetTitle className="hidden">Profile</SheetTitle>
                     <SheetDescription>
                         <div className="w-full max-w-sm rounded-lg bg-white divide-y divide-gray-200">
                             <div aria-label="header" className="flex space-x-4 items-center p-4">
                                 <div aria-label="avatar" className="flex mr-auto items-center space-x-4">
-                                    <img
+                                    {/* <img
                                         src="https://avatars.githubusercontent.com/u/499550?v=4"
                                         alt="avatar Evan You"
                                         className="w-16 h-16 shrink-0 rounded-full"
-                                    />
+                                    /> */}
                                     <div className="space-y-2 flex flex-col flex-1 truncate">
                                         <div className="font-medium relative text-xl leading-tight text-gray-900">
                                             <span className="flex">
@@ -77,14 +79,14 @@ const SheetUserInfo = () => {
                                                 </span>
                                             </span>
                                         </div>
-                                        <p className="font-normal text-base leading-tight text-gray-500 truncate">
+                                        <div className="font-normal text-base leading-tight text-gray-500 truncate">
                                             {userEmail}
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div aria-label="navigation" className="py-2">
-                                <nav className="grid gap-1">
+                                <div className="grid gap-1">
                                     <a
                                         href="/"
                                         className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
@@ -106,7 +108,7 @@ const SheetUserInfo = () => {
                                             <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
                                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                                         </svg>
-                                        <span>Account Settings</span>
+                                        <span>Chỉnh sửa hồ sơ</span>
                                     </a>
                                     <a
                                         href="/"
@@ -203,11 +205,11 @@ const SheetUserInfo = () => {
                                             <path d="M12 16v.01"></path>
                                             <path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"></path>
                                         </svg>
-                                        <span>Helper Center</span>
+                                        <span>Selection</span>
                                     </a>
-                                </nav>
+                                </div>
                             </div>
-                            <div aria-label="account-upgrade" className="px-4 py-6">
+                            {/* <div aria-label="account-upgrade" className="px-4 py-6">
                                 <div className="flex items-center space-x-3">
                                     <div className="mr-auto space-y-2">
                                         <p className="font-medium text-xl text-gray-900 leading-none">Free Plan</p>
@@ -220,7 +222,7 @@ const SheetUserInfo = () => {
                                         Upgrade
                                     </button>
                                 </div>
-                            </div>
+                            </div> */}
                             <div aria-label="footer" className="pt-2">
                                 <button
                                     type="button"
@@ -244,7 +246,9 @@ const SheetUserInfo = () => {
                                         <path d="M9 12h12l-3 -3"></path>
                                         <path d="M18 15l3 -3"></path>
                                     </svg>
-                                    <span>Logout</span>
+                                    <span onClick={logout} disabled={isLoading}>
+                                        Đăng xuất
+                                    </span>
                                 </button>
                             </div>
                         </div>
