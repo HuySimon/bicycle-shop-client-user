@@ -8,6 +8,7 @@ import OTP from '@/views/pages/auth/ForgotPassword/OTP';
 import ChangePassword from '@/views/pages/auth/ChangePassword';
 import MainLayout from '@/views/pages/MainLayout/MainLayout';
 import ProductDetail from '@/components/ProductDetail';
+import Profile from '@/views/pages/Profile/Profile';
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
         children: [
             { path: '/', element: <Home /> }, // Đây là trang chính
             { path: '/Product/:ProductID', element: <ProductDetail /> },
+            { path: '/Account', element: <Profile /> },
             // { path: '/Login', element: <Login /> },
             // { path: '/SignUp', element: <SignUp /> },
             // { path: '/ForgotPassword', element: <ForgotPassword /> },

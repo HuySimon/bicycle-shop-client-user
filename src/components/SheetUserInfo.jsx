@@ -2,6 +2,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 
 import { useUser } from '@/features/authentication/useUser';
 import { useLogout } from '@/features/authentication/useLogout';
+import { Link } from 'react-router-dom';
 
 const SheetUserInfo = () => {
     const { user } = useUser();
@@ -87,8 +88,8 @@ const SheetUserInfo = () => {
                             </div>
                             <div aria-label="navigation" className="py-2">
                                 <div className="grid gap-1">
-                                    <a
-                                        href="/"
+                                    <Link
+                                        to="/Account"
                                         className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
                                     >
                                         <svg
@@ -109,7 +110,7 @@ const SheetUserInfo = () => {
                                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                                         </svg>
                                         <span>Chỉnh sửa hồ sơ</span>
-                                    </a>
+                                    </Link>
                                     <a
                                         href="/"
                                         className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
@@ -133,9 +134,9 @@ const SheetUserInfo = () => {
                                             <path d="M15 4l-3.5 3.5"></path>
                                             <path d="M20 9l-3.5 3.5"></path>
                                         </svg>
-                                        <span>Integrations</span>
+                                        <span>Lịch sử mua hàng</span>
                                     </a>
-                                    <a
+                                    {/* <a
                                         href="/"
                                         className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
                                     >
@@ -157,8 +158,8 @@ const SheetUserInfo = () => {
                                             <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
                                         </svg>
                                         <span>Settings</span>
-                                    </a>
-                                    <a
+                                    </a> */}
+                                    {/* <a
                                         href="/"
                                         className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
                                     >
@@ -182,8 +183,8 @@ const SheetUserInfo = () => {
                                             <path d="M9 13h6"></path>
                                         </svg>
                                         <span>Guide</span>
-                                    </a>
-                                    <a
+                                    </a> */}
+                                    {/* <a
                                         href="/"
                                         className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
                                     >
@@ -206,7 +207,7 @@ const SheetUserInfo = () => {
                                             <path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483"></path>
                                         </svg>
                                         <span>Selection</span>
-                                    </a>
+                                    </a> */}
                                 </div>
                             </div>
                             {/* <div aria-label="account-upgrade" className="px-4 py-6">

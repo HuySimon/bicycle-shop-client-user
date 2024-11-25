@@ -4,10 +4,13 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTr
 import CartList from './CartList';
 import SheetUserInfo from './SheetUserInfo';
 import ButtonLoginLogup from './ButtonLoginLogUp';
+import SearchBar from './ui/SearchBar';
+import { useProducts } from '@/features/product/useProducts';
 
 const Header = () => {
     // Khai báo state để quản lý việc đóng/mở menu
     const [isOpen, setIsOpen] = useState(false);
+    const { isLoading, data: products, isFetching } = useProducts();
 
     // Hàm xử lý khi nhấn nút toggle
     const toggleMenu = () => {
@@ -21,19 +24,43 @@ const Header = () => {
                     <div className="flex flex-col md:flex-row md:justify-between md:items-center">
                         <div className="flex justify-between items-center">
                             <div className="flex items-center">
-                                <a className="text-gray-800 text-xl font-bold md:text-2xl hover:text-gray-700" href="#">
+                                <Link
+                                    to="/"
+                                    className="text-gray-800 text-xl font-bold md:text-2xl hover:text-gray-700"
+                                    href="#"
+                                >
                                     Brand
-                                </a>
+                                </Link>
+
+                                {/* <form>
+                                    <div className="has-[:focus]:outline-solid flex max-w-80 items-center justify-between gap-2 rounded-md border-[1px] border-solid border-slate-400 px-3 py-2 has-[:focus]:outline has-[:focus]:outline-[1px] has-[:focus]:outline-slate-900 mx-10 hidden md:block">
+                                        <input
+                                            type="text"
+                                            className="w-32 bg-inherit text-slate-900 focus:outline-none border-none"
+                                            placeholder="Search"
+                                            aria-label="Search"
+                                        />
+                                        <button>Ấn</button>
+                                    </div>
+                                </form> */}
 
                                 {/* <!-- Search input on desktop screen --> */}
-                                <div className="mx-10 hidden md:block">
+                                {/* <div className="mx-10 hidden md:block">
                                     <input
                                         type="text"
                                         className="w-32 lg:w-64 px-4 py-3 leading-tight text-sm text-gray-700 bg-gray-100 rounded-md placeholder-gray-500 border border-transparent focus:outline-none focus:bg-white focus:shadow-outline focus:border-blue-400"
                                         placeholder="Search"
                                         aria-label="Search"
                                     />
-                                </div>
+                                    <button >Ấn</button>
+                                </div> */}
+                                <SearchBar
+                                    queryParamKey="query"
+                                    pageParamKey="page"
+                                    inputPlaceholder="Tìm kiếm xe đạp..."
+                                    isLoading={isLoading || isFetching}
+                                />
+                                {/* <SearchBar /> */}
                             </div>
 
                             {/* <!-- Mobile menu button -->  */}
