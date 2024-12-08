@@ -75,12 +75,23 @@ export async function getUserInfo() {
 }
 
 export async function logout() {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/Auth/logout`, {
-        credentials: 'include',
-    });
-    localStorage.removeItem('jwtToken');
-    const data = await res.text();
-    return data;
+    const token = localStorage.getItem('jwtToken');
+    try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/Auth/logout`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        localStorage.removeItem('jwtToken');
+        const data = await res.text();
+        return data;
+    } catch (error) {
+        console.error('Error during logout:', error);
+    } finally {
+        localStorage.removeItem('jwtToken');
+    }
 }
 
 export async function SendOTP(email) {

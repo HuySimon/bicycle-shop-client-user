@@ -10,6 +10,7 @@ import router from './routes/router.jsx';
 import { HeaderProvider } from './context/HeaderProvider';
 import './index.css';
 import './reset.css';
+import { CartProvider } from './context/CartContext.jsx';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -26,9 +27,11 @@ createRoot(document.getElementById('root')).render(
     <StrictMode>
         <QueryClientProvider client={queryClient}>
             <ReactQueryDevtools initialIsOpen={false} />
-            <HeaderProvider>
-                <RouterProvider router={router} />
-            </HeaderProvider>
+            <CartProvider>
+                <HeaderProvider>
+                    <RouterProvider router={router} />
+                </HeaderProvider>
+            </CartProvider>
             <Toaster
                 position="top-right"
                 gutter={12}

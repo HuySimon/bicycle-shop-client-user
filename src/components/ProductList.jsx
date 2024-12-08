@@ -15,6 +15,7 @@ const ProductList = () => {
             </div>
         );
     const { content } = products;
+    // console.log(content);
 
     return (
         <>
@@ -30,21 +31,19 @@ const ProductList = () => {
                 <div className="mx-auto container py-8 max-w-7xl">
                     <div className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
                         {/* <!-- Card 1 --> */}
-                        {content?.map(
-                            (product) => (
-                                console.log(product.productImages[0]?.url),
-                                (
-                                    <ProductCard
-                                        product={product}
-                                        key={product.id}
-                                        name={product.name}
-                                        id={product.id}
-                                        price={product.productDetails[0]?.price}
-                                        image={product.productImages[0]?.url}
-                                    />
-                                )
-                            ),
-                        )}
+                        {content?.map((product) => (
+                            <ProductCard
+                                product={product}
+                                key={product.id}
+                                name={product.name}
+                                id={product.id}
+                                productDetailId={product.productDetails[0]?.id}
+                                color={product.productDetails[0]?.color}
+                                price={product.productDetails[0]?.price}
+                                quantity={product.productDetails[0]?.quantity}
+                                image={product.productImages[0]?.url}
+                            />
+                        ))}
                     </div>
                 </div>
                 <PaginationGroup pageInfo={products} />

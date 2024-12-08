@@ -1,19 +1,113 @@
+import { useEffect, useState, useContext } from 'react';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Spinner from '@/components/Spinner';
+import { useNavigate } from 'react-router-dom';
 
-import { useCarts } from '@/features/cart/useCarts';
+import { CartContext } from '@/context/CartContext';
+import { useSyncCart } from '@/features/cart/useSyncCart';
+import { useDeleteCart } from '@/features/cart/useDeleteCart';
+
 import Cart from './Cart';
+// Giỏ hàng: tên xe đạp, màu xe, giá tiền, image,
+const CartList = ({ isAuthenticated }) => {
+    const { cartItems, removeFromCart, refreshCart } = useContext(CartContext);
+    const { cart, isLoading } = useSyncCart();
+    const { deleteCart } = useDeleteCart();
+    const navigate = useNavigate();
 
-const CartList = () => {
-    const { isLoading, data: carts, isFetching } = useCarts();
-    if (isLoading || isFetching)
-        return (
-            <div className="flex items-center justify-center">
-                <Spinner size="lg" />
-            </div>
-        );
-    const { content } = carts;
-    console.log(content);
+    const handleDelete = async (id, productDetailId) => {
+        const token = localStorage.getItem('jwtToken');
+
+        if (token) {
+            try {
+                await deleteCart(productDetailId);
+            } catch (error) {
+                console.error('Error delete product to cart on server:', error);
+            }
+        } else {
+            try {
+                removeFromCart(id);
+            } catch (error) {
+                console.error('Error delete product to cart on local storage:', error);
+            }
+        }
+    };
+
+    const totalAmount = cartItems.reduce((total, item) => {
+        return total + item.price * item.quantity;
+    }, 0);
+
+    const updateQuantity = (id, productDetailId, newQuantity) => {
+        // Logic cập nhật số lượng (có thể gửi request lên server hoặc cập nhật state)
+        console.log(`Cập nhật sản phẩm ${id} với số lượng ${newQuantity}`);
+    };
+    // const { content } = cart;
+    console.log(cartItems);
+    console.log(localStorage.getItem('jwtToken'));
+    const handleCheckout = () => {
+        const token = localStorage.getItem('jwtToken'); // Check if user is logged in
+        if (token) {
+            // Redirect to checkout page
+            navigate('/Checkout');
+        } else {
+            // Redirect to login page
+            navigate('/Login');
+        }
+    };
+    // const { isLoading, data: carts, isFetching } = useCarts();
+    // const [cartItems, setCartItems] = useState([]); // Dữ liệu giỏ hàng
+    // const userToken = localStorage.getItem('userToken'); // Kiểm tra trạng thái đăng nhập
+    // console.log(localStorage.getItem('cart'));
+    // const fetchCartItems = async () => {
+    //     // setIsLoading(true);
+    //     try {
+    //         if (userToken) {
+    //             // Người dùng đã đăng nhập -> Fetch từ backend
+    //             // const response = await fetch('/api/cart', {
+    //             //     method: 'GET',
+    //             //     headers: {
+    //             //         Authorization: `Bearer ${userToken}`,
+    //             //         'Content-Type': 'application/json',
+    //             //     },
+    //             // });
+    //             // const data = await response.json();
+    //             // setCartItems(data.content || []); // Lấy danh sách giỏ hàng từ API
+    //             console.log('get cart from token user authorize');
+    //         } else {
+    //             // Người dùng chưa đăng nhập -> Lấy từ localStorage
+    //             const localCart = JSON.parse(localStorage.getItem('cart')) || [];
+    //             setCartItems(localCart);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching cart items:', error);
+    //     } finally {
+    //         // setIsLoading(false);
+    //         console.log('set Isloading False');
+    //     }
+    // };
+    // useEffect(() => {
+    //     fetchCartItems();
+    // }, [userToken]);
+
+    // const handleDelete = (id) => {
+    //     const updatedCart = cartItems.filter((item) => item.productId !== id);
+    //     setCartItems(updatedCart);
+
+    //     // Update localStorage if user is not logged in
+    //     if (!userToken) {
+    //         localStorage.setItem('cart', JSON.stringify(updatedCart));
+    //     }
+
+    //     // Optionally, make an API call to update the cart on the server for logged-in users
+    // };
+
+    // if (isLoading || isFetching)
+    //     return (
+    //         <div className="flex items-center justify-center">
+    //             <Spinner size="lg" />
+    //         </div>
+    //     );
+    // const { content } = carts;
 
     return (
         <Sheet>
@@ -29,7 +123,7 @@ const CartList = () => {
                             <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
                         </svg>
                         <span className="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 p-2 text-xs text-white">
-                            3
+                            {cartItems.reduce((total, item) => total + item.quantity, 0)}
                         </span>
                     </div>
                     {/* <span className="text-sm font-medium">Giỏ Hàng</span> */}
@@ -136,39 +230,48 @@ const CartList = () => {
                                 </div>
                             </div>
                         </div> */}
-                        {content?.map(
-                            (cart) => (
-                                console.log(cart),
-                                (
-                                    <Cart
-                                        cart={cart}
-                                        key={cart.productDetailId}
-                                        name={cart.name}
-                                        id={cart.productDetailId}
-                                        price={cart.productDetail.price}
-                                        isLoading={isLoading}
-                                        isFetching={isFetching}
-                                    />
-                                )
-                            ),
+                        {cartItems.length === 0 ? (
+                            <span className="text-gray-500">Bạn có không có sản phẩm nào trong giỏ hàng của bạn.</span>
+                        ) : (
+                            cartItems?.map((cart) => (
+                                <Cart
+                                    key={cart.productId}
+                                    cart={cart}
+                                    name={cart.name}
+                                    id={cart.productId}
+                                    productDetailId={cart.productDetailId}
+                                    price={cart.price}
+                                    color={cart.color}
+                                    image={cart.image}
+                                    quantity={cart.quantity}
+                                    onDelete={handleDelete}
+                                    onUpdateQuantity={updateQuantity}
+                                />
+                            ))
                         )}
                         {/* <Cart /> */}
                     </SheetDescription>
-                    <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                        <div className="flex justify-between text-base font-medium text-gray-900">
-                            <p>Subtotal</p>
-                            <p>$262.00</p>
+                    {cartItems.length === 0 ? (
+                        ''
+                    ) : (
+                        <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                            <div className="flex justify-between text-base font-medium text-gray-900">
+                                <span>Giá các sản phẩm</span>
+                                <span>{totalAmount.toLocaleString('vi-VN')} &nbsp;₫</span>
+                            </div>
+                            <span className="mt-0.5 text-sm text-gray-500">
+                                Shipping and taxes calculated at checkout.
+                            </span>
+                            <div className="mt-6">
+                                <button
+                                    onClick={handleCheckout}
+                                    className="w-full flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                                >
+                                    Tiến hành thanh toán
+                                </button>
+                            </div>
                         </div>
-                        <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                        <div className="mt-6">
-                            <a
-                                href="#"
-                                className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                            >
-                                Checkout
-                            </a>
-                        </div>
-                    </div>
+                    )}
                 </SheetHeader>
             </SheetContent>
         </Sheet>

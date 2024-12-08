@@ -1,12 +1,20 @@
 import { useParams } from 'react-router-dom';
+import { useState, useContext } from 'react';
 
+import { CartContext } from '@/context/CartContext';
+import { useAddCart } from '@/features/cart/useAddCart';
 import Spinner from '@/components/Spinner';
 import { useProduct } from '@/features/product/useProduct';
 import PageNotFound from '@/views/pages/PageNotFound/PageNotFound';
+import AddToCartProductDetailBTn from './AddToCartProductDetailBtn';
 
 const ProductDetail = () => {
     const { isLoading, data, isFetching } = useProduct();
     const { ProductID } = useParams();
+
+    const { addToCart } = useContext(CartContext);
+    // const [isloading, setLoading] = useState(false);
+    const { addCart } = useAddCart();
     if (isLoading || isFetching)
         return (
             <div className="flex items-center justify-center">
@@ -17,8 +25,42 @@ const ProductDetail = () => {
     if (!data || data?.error) {
         return <PageNotFound />;
     }
+    const { id, name, productDetails, productImages } = data;
     // const { content } = data;
     console.log(data);
+
+    // const handleAddToCart = async () => {
+    //     setLoading(true);
+    //     const cartItem = {
+    //         productId: product.id,
+    //         productDetailId: product.productDetailId,
+    //         size: product.size,
+    //         name: product.name,
+    //         color: product.color,
+    //         price: product.price,
+    //         image: product.image,
+    //         quantity: 1,
+    //     };
+    //     const token = localStorage.getItem('jwtToken');
+
+    //     if (token) {
+    //         try {
+    //             await addCart(cartItem);
+    //         } catch (error) {
+    //             console.error('Error adding product to cart on server:', error);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     } else {
+    //         try {
+    //             addToCart(cartItem);
+    //         } catch (error) {
+    //             console.error('Error adding product to cart on local storage:', error);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     }
+    // };
     return (
         <>
             <section className="text-gray-700 body-font overflow-hidden bg-white">
@@ -30,9 +72,9 @@ const ProductDetail = () => {
                             src={data.productImages[0].url}
                         />
                         <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                            <h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
+                            {/* <h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2> */}
                             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{data.name}</h1>
-                            <div className="flex mb-4">
+                            {/* <div className="flex mb-4">
                                 <span className="flex items-center">
                                     <svg
                                         fill="currentColor"
@@ -129,7 +171,7 @@ const ProductDetail = () => {
                                         </svg>
                                     </a>
                                 </span>
-                            </div>
+                            </div> */}
                             <p className="leading-relaxed">{data.description}</p>
                             <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
                                 {/* <div className="flex">
@@ -191,9 +233,14 @@ const ProductDetail = () => {
                                 <span className="title-font font-medium text-2xl text-gray-900">
                                     {data.productDetails[0].price}&nbsp;₫
                                 </span>
-                                <button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
+                                <AddToCartProductDetailBTn product={{ id, name, productDetails, productImages }} />
+                                {/* <button
+                                    onClick={handleAddToCart}
+                                    disabled={isloading}
+                                    className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+                                >
                                     THÊM VÀO GIỎ
-                                </button>
+                                </button> */}
                                 {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                                     <svg
                                         fill="currentColor"

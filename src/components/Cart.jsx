@@ -1,6 +1,25 @@
-const Cart = ({ cart, id, price }) => {
-    // const { id } = cart;
-    console.log(id, price);
+import { TrashIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
+
+const Cart = ({ cart, onDelete, id, productDetailId, onUpdateQuantity }) => {
+    const { name, price, color, image, quantity: initialQuantity } = cart;
+    const [quantity, setQuantity] = useState(initialQuantity); // State quản lý số lượng
+
+    // Hàm tăng số lượng
+    const increaseQuantity = () => {
+        const newQuantity = quantity + 1;
+        setQuantity(newQuantity);
+        onUpdateQuantity(id, productDetailId, newQuantity); // Gửi cập nhật lên parent
+    };
+
+    // Hàm giảm số lượng
+    const decreaseQuantity = () => {
+        if (quantity > 1) {
+            const newQuantity = quantity - 1;
+            setQuantity(newQuantity);
+            onUpdateQuantity(id, productDetailId, newQuantity); // Gửi cập nhật lên parent
+        }
+    };
     return (
         // <div className="rounded-3xl border-2 border-gray-200 p-4 lg:p-8 grid grid-cols-12 mb-8 max-lg:max-w-lg max-lg:mx-auto gap-y-4">
         //     <div className="col-span-12 lg:col-span-2 img box">
@@ -93,29 +112,44 @@ const Cart = ({ cart, id, price }) => {
         // </div>
         <li key={id} className="flex py-6">
             <div className="h-24 w-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                <img
-                    // alt={product.imageAlt}
-                    // src={product.imageSrc}
-                    className="h-full w-full object-cover object-center"
-                />
+                <img src={image} className="h-full w-full object-cover object-center" />
             </div>
 
             <div className="ml-4 flex flex-1 flex-col">
                 <div>
                     <div className="flex justify-between text-base font-medium text-gray-900">
                         <h3>
-                            <a>name</a>
+                            <a>{name}</a>
                         </h3>
-                        <p className="ml-4">{price} &nbsp;₫</p>
+                        <span className="ml-4">{price.toLocaleString('vi-VN')} &nbsp;₫</span>
                     </div>
-                    <p className="mt-1 text-sm text-gray-500">color</p>
+                    <span className="mt-1 text-sm text-gray-500">{color}</span>
                 </div>
                 <div className="flex flex-1 items-end justify-between text-sm">
-                    <p className="text-gray-500">Qty</p>
+                    <span className="text-gray-500">{quantity}</span>
+                    {/* <div className="flex items-center gap-2">
+                        <button
+                            onClick={decreaseQuantity}
+                            className="rounded-full border border-gray-200 px-2 py-1 bg-gray-100 hover:bg-gray-200"
+                        >
+                            -
+                        </button>
+                        <span className="w-8 text-center text-gray-500">{quantity}</span>
+                        <button
+                            onClick={increaseQuantity}
+                            className="rounded-full border border-gray-200 px-2 py-1 bg-gray-100 hover:bg-gray-200"
+                        >
+                            +
+                        </button>
+                    </div> */}
 
                     <div className="flex">
-                        <button type="button" className="font-medium text-indigo-600 hover:text-indigo-500">
-                            Remove
+                        <button
+                            type="button"
+                            onClick={() => onDelete(id, productDetailId)}
+                            className="font-medium opacity-50 hover:opacity-100 transition-opacity duration-200"
+                        >
+                            <TrashIcon className="w-6 h-6" />
                         </button>
                     </div>
                 </div>

@@ -1,13 +1,23 @@
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { useContext } from 'react';
 
 import { useUser } from '@/features/authentication/useUser';
 import { useLogout } from '@/features/authentication/useLogout';
 import { Link } from 'react-router-dom';
 
+import { CartContext } from '@/context/CartContext';
+
 const SheetUserInfo = () => {
     const { user } = useUser();
     const { userID, name, userEmail, address } = user;
     const { logout, isLoading } = useLogout();
+    const { resetCart } = useContext(CartContext);
+
+    const handleLogout = () => {
+        logout();
+        localStorage.removeItem('token');
+        resetCart();
+    };
 
     return (
         <Sheet>
@@ -247,7 +257,7 @@ const SheetUserInfo = () => {
                                         <path d="M9 12h12l-3 -3"></path>
                                         <path d="M18 15l3 -3"></path>
                                     </svg>
-                                    <span onClick={logout} disabled={isLoading}>
+                                    <span onClick={handleLogout} disabled={isLoading}>
                                         Đăng xuất
                                     </span>
                                 </button>

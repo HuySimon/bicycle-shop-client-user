@@ -10,7 +10,7 @@ import { useUpdateInfo } from '@/features/authentication/useUpdateInfo';
 
 const Profile = () => {
     useEffect(() => {
-        document.title = 'Chỉnh sửa hồ sơ';
+        document.title = 'Tài khoản của tôi';
     }, []);
     const { register, handleSubmit, formState, watch } = useForm({
         defaultValues: {},
@@ -122,6 +122,9 @@ const Profile = () => {
                                 </a> */}
                                     <Link to="/" variant="Trở về">
                                         Trở Về
+                                    </Link>
+                                    <Link to="/ChangePass" variant="Đổi mật khẩu">
+                                        Đổi mật khẩu
                                     </Link>
                                 </div>
                             </div>

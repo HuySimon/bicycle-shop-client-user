@@ -29,7 +29,7 @@ const Header = () => {
                                     className="text-gray-800 text-xl font-bold md:text-2xl hover:text-gray-700"
                                     href="#"
                                 >
-                                    Brand
+                                    SGUBIKE
                                 </Link>
 
                                 {/* <form>

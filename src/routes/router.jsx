@@ -9,6 +9,8 @@ import ChangePassword from '@/views/pages/auth/ChangePassword';
 import MainLayout from '@/views/pages/MainLayout/MainLayout';
 import ProductDetail from '@/components/ProductDetail';
 import Profile from '@/views/pages/Profile/Profile';
+import Checkout from '@/views/pages/Checkout/Checkout';
+import ChangePass from '@/views/ChangePass/ChangePass';
 
 const router = createBrowserRouter([
     {
@@ -18,6 +20,7 @@ const router = createBrowserRouter([
             { path: '/', element: <Home /> }, // Đây là trang chính
             { path: '/Product/:ProductID', element: <ProductDetail /> },
             { path: '/Account', element: <Profile /> },
+            { path: '/ChangePass', element: <ChangePass /> },
             // { path: '/Login', element: <Login /> },
             // { path: '/SignUp', element: <SignUp /> },
             // { path: '/ForgotPassword', element: <ForgotPassword /> },
@@ -44,6 +47,7 @@ const router = createBrowserRouter([
     { path: '/ForgotPassword', element: <ForgotPassword /> },
     { path: '/OTP', element: <OTP /> },
     { path: '/ChangePassword', element: <ChangePassword /> },
+    { path: '/Checkout', element: <Checkout /> },
 ]);
 
 export default router;
