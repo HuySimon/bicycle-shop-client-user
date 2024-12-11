@@ -55,11 +55,11 @@ export const CartProvider = ({ children, isAuthenticated }) => {
         //     }
         // }
         if (token && cart && cart.length > 0) {
-            console.log('Setting cart from backend:', cart);
+            // console.log('Setting cart from backend:', cart);
             setCartItems(cart);
         } else {
             // const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-            console.log('Setting cart from localStorage:', storedCart);
+            // console.log('Setting cart from localStorage:', storedCart);
             setCartItems(storedCart);
         }
     }, [cart]);

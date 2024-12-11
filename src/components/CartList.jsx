@@ -41,9 +41,6 @@ const CartList = ({ isAuthenticated }) => {
         // Logic cập nhật số lượng (có thể gửi request lên server hoặc cập nhật state)
         console.log(`Cập nhật sản phẩm ${id} với số lượng ${newQuantity}`);
     };
-    // const { content } = cart;
-    console.log(cartItems);
-    console.log(localStorage.getItem('jwtToken'));
     const handleCheckout = () => {
         const token = localStorage.getItem('jwtToken'); // Check if user is logged in
         if (token) {

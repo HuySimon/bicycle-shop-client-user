@@ -11,6 +11,7 @@ import ProductDetail from '@/components/ProductDetail';
 import Profile from '@/views/pages/Profile/Profile';
 import Checkout from '@/views/pages/Checkout/Checkout';
 import ChangePass from '@/views/ChangePass/ChangePass';
+import OrderHistory from '@/views/pages/OrderHistory/OrderHistory';
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
             { path: '/Product/:ProductID', element: <ProductDetail /> },
             { path: '/Account', element: <Profile /> },
             { path: '/ChangePass', element: <ChangePass /> },
+            { path: '/OrderHistory', element: <OrderHistory /> },
             // { path: '/Login', element: <Login /> },
             // { path: '/SignUp', element: <SignUp /> },
             // { path: '/ForgotPassword', element: <ForgotPassword /> },

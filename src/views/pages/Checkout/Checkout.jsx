@@ -17,6 +17,8 @@ const Checkout = () => {
     const { cart, isLoading } = useSyncCart();
     const { deleteCart } = useDeleteCart();
 
+    console.log(cartItems);
+
     const toggleCollapse = () => {
         setIsCollapsed(!isCollapsed);
     };
@@ -28,6 +30,9 @@ const Checkout = () => {
             console.error('Error delete product to cart on server:', error);
         }
     };
+    const totalAmount = cartItems.reduce((total, item) => {
+        return total + item.price * item.quantity;
+    }, 0);
     return (
         <>
             <header className="sticky top-0 z-20 bg-white shadow ">
@@ -94,6 +99,7 @@ const Checkout = () => {
                                     id={c.productId}
                                     productDetailId={c.productDetailId}
                                     price={c.price}
+                                    size={c.size}
                                     color={c.color}
                                     image={c.image}
                                     quantity={c.quantity}
@@ -223,7 +229,7 @@ const Checkout = () => {
                         <h2 className="text-lg font-bold mb-4">Tạm tính</h2>
                         <div className="flex justify-between text-gray-700 mb-2">
                             <span>Giá sản phẩm</span>
-                            <span>2.945.000 đ</span>
+                            <span>{totalAmount.toLocaleString('vi-VN')} đ</span>
                         </div>
                         <div className="flex justify-between text-gray-700 mb-2">
                             <span>Vận chuyển Phí giao hàng</span>
@@ -232,7 +238,7 @@ const Checkout = () => {
                         <hr className="border-t border-gray-300 my-2" />
                         <div className="flex justify-between text-gray-800 font-bold">
                             <span>Tổng cộng</span>
-                            <span>2.945.000 đ</span>
+                            <span>{totalAmount.toLocaleString('vi-VN')} đ</span>
                         </div>
                     </div>
 

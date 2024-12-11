@@ -121,7 +121,7 @@ const Cart = ({ cart, onDelete, id, productDetailId, onUpdateQuantity }) => {
                         <h3>
                             <a>{name}</a>
                         </h3>
-                        <span className="ml-4">{price.toLocaleString('vi-VN')} &nbsp;₫</span>
+                        <span className="ml-4">{price?.toLocaleString('vi-VN')} &nbsp;₫</span>
                     </div>
                     <span className="mt-1 text-sm text-gray-500">{color}</span>
                 </div>

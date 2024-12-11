@@ -87,56 +87,48 @@ const Footer = () => {
         <footer className="text-white px-8 py-6 bg-gray-800">
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
                 <div className="mb-8 md:mb-0">
-                    <h3 className="text-lg font-bold mb-4">Example</h3>
-                    <p className="mb-2">Example</p>
-                    <p className="mb-2">123 Example Street, Example City, Example Country</p>
+                    <h3 className="text-lg font-bold mb-4">CÔNG TY TNHH BIKE SÀI GÒN</h3>
+                    <p className="mb-2">273 An Dương Vương – Phường 3 – Quận 5</p>
                     <p className="mb-2">
-                        <a href="tel:+1514890000" className="hover:text-yellow-400">
-                            1-514-890-0000
-                        </a>
+                        <a className="hover:text-yellow-400">(84-28) 38.354409 - 38.352309</a>
                     </p>
                     <p>
-                        <a href="mailto:calinscompagnies@calins.com" className="hover:text-yellow-400">
-                            calinscompagnies@calins.com
+                        <a href="mailto:daihocsaigon@sgu.edu.vn" className="hover:text-yellow-400">
+                            daihocsaigon@sgu.edu.vn
                         </a>
                     </p>
                 </div>
                 <div className="mb-8 md:mb-0">
-                    <h3 className="text-lg font-bold mb-4">Example</h3>
+                    <h3 className="text-lg font-bold mb-4">HỖ TRỢ KHÁCH HÀNG</h3>
                     <ul>
                         <li>
                             <a href="#" className="hover:text-yellow-400">
-                                About Us
+                                Chính sách bảo hành
                             </a>
                         </li>
                         <li>
                             <a href="#" className="hover:text-yellow-400">
-                                Delivery Policy
+                                Giao hàng toàn quốc
                             </a>
                         </li>
                         <li>
                             <a href="#" className="hover:text-yellow-400">
-                                Contact Us
+                                Quy định đổi trả
                             </a>
                         </li>
                         <li>
                             <a href="#" className="hover:text-yellow-400">
-                                Our Stores
+                                Chính sách thanh toán
                             </a>
                         </li>
                         <li>
                             <a href="#" className="hover:text-yellow-400">
-                                Help
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" className="hover:text-yellow-400">
-                                Work at Hugs
+                                Chính sách bảo mật thông tin
                             </a>
                         </li>
                     </ul>
                 </div>
-                <div className="mb-8 md:mb-0">
+                {/* <div className="mb-8 md:mb-0">
                     <h3 className="text-lg font-bold mb-4">Example</h3>
                     <ul>
                         <li>
@@ -160,18 +152,18 @@ const Footer = () => {
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> */}
                 <div>
-                    <h3 className="text-lg font-bold mb-4">Contact Us</h3>
+                    <h3 className="text-lg font-bold mb-4">LIÊN HỆ TƯ VẤN</h3>
                     <ul className="mb-4">
                         <li>
                             <a href="tel:+1514890000" className="hover:text-yellow-400">
-                                1-514-890-0000
+                                (84-28) 38.354409 - 38.352309
                             </a>
                         </li>
                         <li>
-                            <a href="mailto:calinscompagnies@calins.com" className="hover:text-yellow-400">
-                                Send mail
+                            <a href="mailto:daihocsaigon@sgu.edu.vn" className="hover:text-yellow-400">
+                                daihocsaigon@sgu.edu.vn
                             </a>
                         </li>
                     </ul>

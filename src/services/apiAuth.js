@@ -45,7 +45,6 @@ export async function logup(email, fullName, address, phoneNumber, password) {
         throw new Error('Register failed');
     }
     const data = await res.text();
-    // const { accessToken } = data;
     if (data.status === 400) {
         return null;
     }
@@ -54,7 +53,6 @@ export async function logup(email, fullName, address, phoneNumber, password) {
 }
 
 export async function getUserInfo() {
-    // Lấy token JWT từ localStorage hoặc cookie, nơi lưu token sau khi người dùng đăng nhập thành công
     const token = localStorage.getItem('jwtToken');
     if (!token) {
         throw new Error('User is not logged in.');

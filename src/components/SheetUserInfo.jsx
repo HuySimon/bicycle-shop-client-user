@@ -121,11 +121,11 @@ const SheetUserInfo = () => {
                                         </svg>
                                         <span>Chỉnh sửa hồ sơ</span>
                                     </Link>
-                                    <a
-                                        href="/"
+                                    <Link
+                                        to="/OrderHistory"
                                         className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
                                     >
-                                        <svg
+                                        {/* <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             aria-hidden="true"
                                             className="w-7 h-7"
@@ -143,9 +143,28 @@ const SheetUserInfo = () => {
                                             <path d="M4 20l3.5 -3.5"></path>
                                             <path d="M15 4l-3.5 3.5"></path>
                                             <path d="M20 9l-3.5 3.5"></path>
+                                        </svg> */}
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            aria-hidden="true"
+                                            className="w-7 h-7"
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            strokeWidth="2"
+                                            stroke="currentColor"
+                                            fill="none"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        >
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <circle cx="12" cy="12" r="9"></circle>
+                                            <path d="M12 7v5l3 3"></path>
+                                            <path d="M8 16h8"></path>
                                         </svg>
+
                                         <span>Lịch sử mua hàng</span>
-                                    </a>
+                                    </Link>
                                     {/* <a
                                         href="/"
                                         className="flex items-center leading-6 space-x-3 py-3 px-4 w-full text-lg text-gray-600 focus:outline-none hover:bg-gray-100 rounded-md"
