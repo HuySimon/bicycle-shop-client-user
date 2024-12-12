@@ -1,4 +1,6 @@
-const OrderCard = ({ quantity, price }) => {
+const OrderCard = ({ id, productDetail, quantity, price }) => {
+    const { color, size, product } = productDetail;
+    const { name, productImages } = product;
     return (
         <>
             <svg
@@ -12,32 +14,31 @@ const OrderCard = ({ quantity, price }) => {
                 <path d="M0 1H1216" stroke="#D1D5DB" />
             </svg>
 
-            <div className="flex max-lg:flex-col items-center gap-8 lg:gap-24 px-3 md:px-11">
+            <div key={id} className="flex max-lg:flex-col items-center gap-8 lg:gap-24 px-3 md:px-11">
                 <div className="grid grid-cols-4 w-full">
                     <div className="col-span-4 sm:col-span-1">
-                        <img
-                            src="https://pagedone.io/asset/uploads/1705474774.png"
-                            alt=""
-                            className="max-sm:mx-auto object-cover"
-                        />
+                        <img src={productImages} alt="" className="max-sm:mx-auto object-cover" />
                     </div>
                     <div className="col-span-4 sm:col-span-3 max-sm:mt-4 sm:pl-8 flex flex-col justify-center max-sm:items-center">
                         <h6 className="font-manrope font-semibold text-2xl leading-9 text-black mb-3 whitespace-nowrap">
-                            Decoration Flower port
+                            {name}
                         </h6>
                         {/* <p className="font-normal text-lg leading-8 text-gray-500 mb-8 whitespace-nowrap">
                 By: Dust Studios
             </p> */}
                         <div className="flex items-center max-sm:flex-col gap-x-10 gap-y-3">
                             <span className="font-normal text-lg leading-8 text-gray-500 whitespace-nowrap">
-                                Size: s
+                                Màu: {color}
+                            </span>
+                            <span className="font-normal text-lg leading-8 text-gray-500 whitespace-nowrap">
+                                Size: {size}
                             </span>
                             <span className="font-normal text-lg leading-8 text-gray-500 whitespace-nowrap">
                                 Số lượng: {quantity}
                             </span>
-                            <p className="font-semibold text-xl leading-8 text-black whitespace-nowrap">
+                            <span className="font-semibold text-xl leading-8 text-black whitespace-nowrap">
                                 Giá {price?.toLocaleString('vi-VN')} &nbsp;₫
-                            </p>
+                            </span>
                         </div>
                     </div>
                 </div>

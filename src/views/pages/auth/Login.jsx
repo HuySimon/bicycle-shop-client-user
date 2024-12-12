@@ -28,6 +28,8 @@ const Login = () => {
                     className="hidden lg:flex w-full lg:w-1/2 login_img_section
           justify-around items-center"
                 >
+                    <img src="src/assets/signin-image.webp" />
+
                     <div
                         className=" 
                   bg-black 
@@ -40,7 +42,7 @@ const Login = () => {
                         <p className="text-white mt-1">The simplest app to use</p>
                         <div className="flex justify-center lg:justify-start mt-6">
                             <a
-                                href="#"
+                                href="/"
                                 className="hover:bg-indigo-700 hover:text-white hover:-translate-y-1 transition-all duration-500 bg-white text-indigo-800 mt-4 px-4 py-2 rounded-2xl font-bold mb-2"
                             >
                                 Get Started
@@ -141,12 +143,12 @@ const Login = () => {
                                     Quên mật khẩu ?
                                 </Link>
 
-                                <Link
-                                    to="/SignUp"
+                                <a
+                                    href="/SignUp"
                                     className="text-sm ml-2 hover:text-blue-500 cursor-pointer hover:-translate-y-1 duration-500 transition-all"
                                 >
                                     Bạn đã có tài khoản chưa?
-                                </Link>
+                                </a>
                             </div>
                         </form>
                     </div>

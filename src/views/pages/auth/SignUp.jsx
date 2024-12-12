@@ -28,6 +28,7 @@ const SignUp = () => {
                     className="hidden lg:flex w-full lg:w-1/2 login_img_section
     justify-around items-center"
                 >
+                    <img src="src/assets/15848031292911696601-undraw_designer_life_w96d.svg" />
                     <div
                         className=" 
             bg-black 
