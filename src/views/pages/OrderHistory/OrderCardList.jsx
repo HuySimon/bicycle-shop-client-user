@@ -1,13 +1,12 @@
 import OrderCard from './OrderCard';
 
-const OrderCardList = ({ totalPrice, orderDetails, statusName, orderDate }) => {
-    // const dateString = orderDate;
+const OrderCardList = ({ id, totalPrice, orderDetails, statusName, orderDate }) => {
     const date = new Date(orderDate);
     const formattedDate = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1)
         .toString()
         .padStart(2, '0')}/${date.getFullYear()}`;
     return (
-        <div className="mt-7 border border-gray-300 pt-9">
+        <div key={id} className="mt-7 border border-gray-300 pt-9">
             <div className="flex max-md:flex-col items-center justify-between px-3 md:px-11">
                 <div className="data">
                     {/* <p className="font-medium text-lg leading-8 text-black whitespace-nowrap">
@@ -36,7 +35,13 @@ const OrderCardList = ({ totalPrice, orderDetails, statusName, orderDate }) => {
             </div>
 
             {orderDetails?.map((o) => (
-                <OrderCard key={o.id} quantity={o.quantity} price={o.price} />
+                <OrderCard
+                    key={o.productDetailId}
+                    id={o.productDetailId}
+                    quantity={o.quantity}
+                    price={o.price}
+                    productDetail={o.productDetail}
+                />
             ))}
 
             {/* <svg

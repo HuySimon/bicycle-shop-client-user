@@ -93,6 +93,7 @@ const OrderHistory = () => {
                 {order?.map((o) => (
                     <OrderCardList
                         key={o.id}
+                        id={o.id}
                         totalPrice={o.totalPrice}
                         orderDetails={o.orderDetails}
                         statusName={o.statusName}
