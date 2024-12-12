@@ -35,7 +35,7 @@ function SearchBar({ queryParamKey, pageParamKey, inputPlaceholder, loading }) {
 
     return (
         <form onSubmit={handleSubmit} className="mb-3">
-            <div className="flex max-w-80 px-4 py-3 leading-tight text-sm text-gray-700 bg-gray-100 rounded-md placeholder-gray-500 border border-transparent has-[:focus]:outline has-[:focus]:outline-[1px] has-[:focus]:outline-blue-400 mx-10 hidden md:block">
+            <div className="flex relative max-w-80 px-4 py-3 leading-tight text-sm text-gray-700 bg-gray-100 rounded-md placeholder-gray-500 border border-transparent has-[:focus]:outline has-[:focus]:outline-[1px] has-[:focus]:outline-blue-400 mx-10 hidden md:block">
                 {/* <div className="mx-10 hidden md:block"> */}
                 <input
                     type="text"
@@ -48,7 +48,7 @@ function SearchBar({ queryParamKey, pageParamKey, inputPlaceholder, loading }) {
                     placeholder={inputPlaceholder}
                 />
                 {query !== '' && (
-                    <button type="button" className="ruby" onClick={handleClear}>
+                    <button type="button" className="ruby absolute right-2" onClick={handleClear}>
                         <ruby>
                             <HiOutlineXMark className="h-5 w-5 flex-shrink-0" />
                         </ruby>

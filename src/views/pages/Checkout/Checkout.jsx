@@ -22,6 +22,8 @@ const Checkout = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
     const { cartItems, removeFromCart, refreshCart } = useContext(CartContext);
 
+    console.log(cartItems);
+
     const toggleCollapse = () => {
         setIsCollapsed(!isCollapsed);
     };

@@ -5,12 +5,12 @@ import CartList from './CartList';
 import SheetUserInfo from './SheetUserInfo';
 import ButtonLoginLogup from './ButtonLoginLogUp';
 import SearchBar from './ui/SearchBar';
-import { useProducts } from '@/features/product/useProducts';
+// import { useProducts } from '@/features/product/useProducts';
 
 const Header = () => {
     // Khai báo state để quản lý việc đóng/mở menu
     const [isOpen, setIsOpen] = useState(false);
-    const { isLoading, data: products, isFetching } = useProducts();
+    // const { isLoading, data: products, isFetching } = useProducts();
 
     // Hàm xử lý khi nhấn nút toggle
     const toggleMenu = () => {
@@ -54,12 +54,12 @@ const Header = () => {
                                     />
                                     <button >Ấn</button>
                                 </div> */}
-                                <SearchBar
+                                {/* <SearchBar
                                     queryParamKey="query"
                                     pageParamKey="page"
                                     inputPlaceholder="Tìm kiếm xe đạp..."
                                     isLoading={isLoading || isFetching}
-                                />
+                                /> */}
                                 {/* <SearchBar /> */}
                             </div>
 

@@ -30,7 +30,7 @@ export async function syncAndGetAllCart() {
     }
 
     const updatedCart = await res.json();
-    console.log('Updated cart:', updatedCart);
+    // console.log('Updated cart:', updatedCart);
 
     localStorage.removeItem('cart'); // Xóa local cart sau khi đồng bộ
     return updatedCart;

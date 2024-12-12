@@ -28,7 +28,9 @@ const ProductCard = ({ product, price, image, color, productDetailId, quantity }
                     <p className="text-lg font-bold text-black truncate block capitalize">{name}</p>
                     <p className="text-lg font-bold text-black truncate block capitalize">{color}</p>
                     <div className="flex items-center">
-                        <p className="text-lg font-semibold text-black cursor-auto my-3">{price}</p>
+                        <p className="text-lg font-semibold text-black cursor-auto my-3">
+                            {price?.toLocaleString('vi-VN')} &nbsp;₫
+                        </p>
                         {/* <del>
                                 <p className="text-sm text-gray-600 cursor-auto ml-2">$199</p>
                             </del> */}

@@ -1,18 +1,23 @@
 import { TrashIcon } from '@heroicons/react/24/outline';
 
 const CartCheckout = ({ cart, onDelete, id, productDetailId }) => {
-    const { name, price, color, image, quantity: initialQuantity } = cart;
+    const { name, size, price, color, image, quantity } = cart;
     return (
         <div key={id} className="flex items-center justify-between border-b pb-4">
             <div className="flex items-center gap-4">
                 <img src={image} alt="Sản phẩm" className="w-12 h-12" />
                 <div>
                     <p className="font-semibold">{name}</p>
-                    <p className="text-sm text-gray-500">Màu sắc: {color} &nbsp; Size: 36 | 22.7 cm</p>
+                    <p className="text-sm text-gray-500">
+                        Màu sắc: {color} &nbsp; Size: {size} cm
+                    </p>
                 </div>
             </div>
             <div className="flex items-center gap-4">
                 <span className="font-semibold text-gray-700">{price} đ</span>
+                <div className="flex items-center border rounded-lg">
+                    <span className="px-3">{quantity}</span>
+                </div>
                 {/* <div className="flex items-center border rounded-lg">
                     <button className="px-2 py-1 text-gray-600 hover:bg-gray-100">-</button>
                     <span className="px-3">1</span>

@@ -10,7 +10,7 @@ import {
 import { useSearchParams } from 'react-router-dom';
 
 function PaginationGroup({ pageInfo, searchParamKey = 'page' }) {
-    const { pageNo: currPage, totalPages } = pageInfo;
+    const { totalPages, pageNumber: currPage } = pageInfo;
     const [searchParams, setSearchParams] = useSearchParams();
 
     let adjacentPages = [currPage - 2, currPage - 1, currPage, currPage + 1, currPage + 2];
