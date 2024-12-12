@@ -3,21 +3,23 @@ import { useState, useContext } from 'react';
 import { CartContext } from '@/context/CartContext';
 import { useAddCart } from '@/features/cart/useAddCart';
 
-const AddToCartProductDetailBTn = ({ product }) => {
+const AddToCartProductDetailBTn = ({ product, productDetail, disabled }) => {
     const { addToCart } = useContext(CartContext);
     const [isLoading, setLoading] = useState(false);
     const { addCart } = useAddCart();
 
+    const { id: productId, name } = product;
+
     const handleAddToCart = async () => {
         setLoading(true);
         const cartItem = {
-            productId: product.id,
-            productDetailId: product.productDetails[0]?.id,
-            size: product.productDetails[0]?.size,
-            name: product.name,
-            color: product.productDetails[0]?.color,
-            price: product.productDetails[0]?.price,
-            image: product.productImages[0]?.url,
+            productId,
+            productDetailId: productDetail?.id,
+            size: productDetail?.size,
+            name,
+            color: productDetail?.color,
+            price: productDetail?.price,
+            image: productDetail?.imageUrl,
             quantity: 1,
         };
         const token = localStorage.getItem('jwtToken');
@@ -43,10 +45,10 @@ const AddToCartProductDetailBTn = ({ product }) => {
     return (
         <button
             onClick={handleAddToCart}
-            disabled={isLoading}
-            className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
+            disabled={isLoading || disabled}
+            className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded disabled:bg-red-300"
         >
-            THÊM VÀO GIỎ
+            Thêm vào giỏ hàng
         </button>
     );
 };
